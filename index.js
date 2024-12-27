@@ -2,7 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
-
+import user from './routes/user.js'
 import authRoute from './routes/auth.js'
 dotenv.config()
 
@@ -16,11 +16,11 @@ mongoose
   })
 
 const app = express()
-app.use(bodyParser.json())
 app.use(express.json())
-app.use('/api/auth', authRoute)
+app.use(bodyParser.json())
 
-app.use('/users', userRoutes)
+app.use('/api/auth', authRoute)
+app.use('/api/users', userRoutes)
 
 app.listen(process.env.PORT || 5000, () => {
   console.log('Server runing')
